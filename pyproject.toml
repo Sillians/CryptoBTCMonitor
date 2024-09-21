@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "cryptobtcmonitor"
+version = "0.1.0"
+description = "Within Earshot real time ETL to populate a dashboard."
+authors = ["sillians <ihuomacbasil@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+psycopg2 = "^2.9.9"
+boto3 = "^1.35.24"
+pytest = "^8.3.3"
+pytest-mock = "^3.14.0"
+black = "^24.8.0"
+flake8 = "^7.1.1"
+mypy = "^1.11.2"
+types-requests = "^2.32.0.20240914"
+isort = "^5.13.2"
+yoyo-migrations = "^9.0.0"
+
+[tool.poetry.group.dev.dependencies]
+requests = "^2.32.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
