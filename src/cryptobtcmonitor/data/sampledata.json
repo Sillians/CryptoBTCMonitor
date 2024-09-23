@@ -1,0 +1,26 @@
+{
+  "data": [
+    {
+      "exchangeId": "binance",
+      "name": "Binance",
+      "rank": "1",
+      "percentTotalVolume": "29.141981521594443742000000000000000000",
+      "volumeUsd": "2945752586.4555924319200490",
+      "tradingPairs": "751",
+      "socket": true,
+      "exchangeUrl": "https://www.binance.com/",
+      "updated": 1726953222051
+    },
+    {
+      "exchangeId": "crypto",
+      "name": "Crypto.com Exchange",
+      "rank": "2",
+      "percentTotalVolume": "11.950885385919275065000000000000000000",
+      "volumeUsd": "1208028750.8905095058678957",
+      "tradingPairs": "107",
+      "socket": false,
+      "exchangeUrl": "https://api.crypto.com/",
+      "updated": 1726953242910
+    }
+  ]
+}

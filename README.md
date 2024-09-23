@@ -1,4 +1,4 @@
-
+# CryptoBTCMonitor
 
 
 
@@ -12,8 +12,21 @@ Details into the coin pairs and volume;
 
 #### Response Data
 
-| Month    | Savings |
-| -------- | ------- |
-| January  | $250    |
-| February | $80     |
-| March    | $420    |
+| Key                | Description                       |
+| ------------------ | --------------------------------- |
+| id                 | unique identifier for exchange    |
+| name               | proper name of exchange           |
+| rank               | rank is in ascending order - this number is directly associated with the total exchange volume whereas the highest volume exchange receives rank 1    |
+| percentTotalVolume | the amount of daily volume a single exchange transacts in relation to total daily volume of all exchanges     |
+| volumeUsd          | daily volume represented in USD    |
+| tradingPairs       | number of trading pairs (or markets) offered by exchange    |
+| socket             | true/false, true = trade socket available, false = trade socket unavailable  |
+| exchangeUrl        | website to exchange                |
+| updated            | UNIX timestamp (milliseconds) since information was received from this exchange   |
+
+
+
+### Commands
+
+`docker compose -f compose.yaml up -d`
+

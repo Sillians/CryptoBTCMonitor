@@ -17,6 +17,7 @@ mypy = "^1.11.2"
 types-requests = "^2.32.0.20240914"
 isort = "^5.13.2"
 yoyo-migrations = "^9.0.0"
+python-dotenv = "^1.0.1"
 
 [tool.poetry.group.dev.dependencies]
 requests = "^2.32.3"

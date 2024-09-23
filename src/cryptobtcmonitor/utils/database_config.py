@@ -11,5 +11,5 @@ def get_postgres_credentials() -> DBConnection:
         user=os.getenv('POSTGRES_USER', ''),
         password=os.getenv('POSTGRES_PASSWORD', ''),
         host=os.getenv('POSTGRES_SERVER', ''),
-        port=int('POSTGRES_PORT', 5432),
+        port=int(os.getenv('POSTGRES_PORT', 5432)),
     )
