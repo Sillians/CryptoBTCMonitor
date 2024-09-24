@@ -26,7 +26,51 @@ Details into the coin pairs and volume;
 
 
 
+### Start and Connect to the Database from the command line
+- You can run it in local dev mode from `sh start-postgres.sh` or connect with dev.
+- #### Connect to the <db> from the command line
+    - psql postgres
+    - CREATE ROLE <db> WITH LOGIN PASSWORD <'db-password'>;
+    - ALTER ROLE dbUser CREATEDB;
+    - psql postgres -U <db>;
+    - CREATE DATABASE <databasename>;
+    - GRANT ALL PRIVILEGES ON DATABASE <databasename> TO <db>;
+    - postgres-> \list
+    - postgres-> \dt
+
+
+
 ### Commands
 
 `docker compose -f compose.yaml up -d`
+`docker compose up --build`
 
+- tear down the volumes
+`docker compose down -v`
+
+
+
+### REMOVE
+
+DROP DATABASE bitcoinmonitor WITH (FORCE);
+
+
+DROP SCHEMA IF EXISTS bitcoin;
+DROP TABLE IF EXISTS bitcoin.exchange;
+
+
+CREATE TABLE bitcoin.exchange
+(
+    id VARCHAR(50),
+    name VARCHAR(50),
+    rank INT,
+    percentTotalVolume NUMERIC(8, 5),
+    volumeUsd NUMERIC(18, 5),
+    tradingPairs INT,
+    socket BOOLEAN,
+    exchangeUrl VARCHAR(50),
+    updated_unix_millis BIGINT,
+    updated_utc TIMESTAMP
+)
+
+SELECT * FROM bitcoin.exchange;

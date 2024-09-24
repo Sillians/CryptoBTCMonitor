@@ -1,14 +1,18 @@
 ---------------------
 -- CREATE DATABASE
 ---------------------
-CREATE DATABASE bitcoinmonitor;
+CREATE DATABASE bitcoinmonitor
+    WITH
+    OWNER = user
+    ENCODING = 'UTF8';
+GRANT ALL PRIVILEGES ON DATABASE bitcoinmonitor TO "user";
 
 ---------------------
 -- CREATE SCHEMA AND TABLE
 ---------------------
 
--- CREATE SCHEMA bitcoin;
-CREATE SCHEMA IF NOT EXISTS bitcoin AUTHORIZATION user;
+CREATE SCHEMA bitcoin;
+-- CREATE SCHEMA IF NOT EXISTS bitcoin AUTHORIZATION user;
 
 DROP TABLE IF EXISTS bitcoin.exchange;
 CREATE TABLE bitcoin.exchange

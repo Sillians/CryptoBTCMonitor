@@ -1,0 +1,42 @@
+---------------------
+-- CREATE DATABASE
+---------------------
+-- CREATE DATABASE bitcoinmonitor;
+
+    -- WITH
+    -- OWNER = postgres
+    -- ENCODING = 'UTF8'
+    -- LC_COLLATE = 'en_US.utf8'
+    -- LC_CTYPE = 'en_US.utf8'
+    -- TABLESPACE = pg_default
+    -- CONNECTION LIMIT = -1;
+
+
+
+-- GRANT ALL PRIVILEGES ON DATABASE bitcoinmonitor TO "postgres";
+
+---------------------
+-- CREATE SCHEMA AND TABLE
+---------------------
+
+CREATE SCHEMA bitcoin;
+-- CREATE SCHEMA IF NOT EXISTS bitcoin AUTHORIZATION user;
+
+DROP TABLE IF EXISTS bitcoin.exchange;
+CREATE TABLE bitcoin.exchange
+(
+    id VARCHAR(50),
+    name VARCHAR(50),
+    rank INT,
+    percentTotalVolume NUMERIC(8, 5),
+    volumeUsd NUMERIC(18, 5),
+    tradingPairs INT,
+    socket BOOLEAN,
+    exchangeUrl VARCHAR(50),
+    updated_unix_millis BIGINT,
+    updated_utc TIMESTAMP
+)
+
+
+
+
