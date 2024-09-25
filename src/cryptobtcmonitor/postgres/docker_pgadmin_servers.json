@@ -1,0 +1,15 @@
+{
+  "Servers": {
+    "1": {
+      "Group": "Servers",
+      "Name": "Bitcoin Monitor Servers",
+      "Port": 5432,
+      "Username": "postgres",
+      "Host": "postgres",
+      "SSLMode": "prefer",
+      "MaintenanceDB": "postgres",
+      "Favorite": true,
+      "PassFile": "/tmp/pgpassfile"
+    }
+  }
+}

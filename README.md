@@ -25,6 +25,43 @@ Details into the coin pairs and volume;
 | updated            | UNIX timestamp (milliseconds) since information was received from this exchange   |
 
 
+### Setting up Local Postgres with Docker Compose
+
+Helpful Resources:
+
+- [Frictionless Local Postgres with Docker Compose](https://github.com/asaikali/docker-compose-postgres/blob/master/README.md)
+- [Postgres, PgAdmin docker compose file](https://github.com/asaikali/docker-compose-postgres/blob/master/docker-compose.yml)
+- [How to automatically setup pgAdmin with a Docker database](https://event-driven.io/en/automatically_connect_pgadmin_to_database/)
+- [Getting a postgres instance with pgadmin4 🐘 and docker-compose](https://gist.github.com/diegoquintanav/a3c046f016f4887ba8e74859dcb560a7)
+- [Creating and filling a Postgres DB with Docker compose](https://levelup.gitconnected.com/creating-and-filling-a-postgres-db-with-docker-compose-e1607f6f882f)
+- https://gist.github.com/onjin/2dd3cc52ef79069de1faa2dfd456c945?permalink_comment_id=2961048
+
+
+1. checkout the code.
+2. run `postgres` and `pgAdmin` using `docker-compose up`.
+3. Using a browser go to `localhost:8080` and explore the pgAdmin console. There should be one database `bitcoinmonitor`. pgAdmin will not ask for any passwords.
+4. The docker compose file uses a `server.json` file, with details of the server connection, to avoid having to enter the connection settings. pgAdmin will import the `.json` file into its configuration the first time it starts.
+
+#### Command to Create and start containers
+- `docker compose -f <docker-compose.yaml> up -d` or `docker compose up --build`
+
+#### Command to stop containers and removes containers, networks, volumes, and images created by up
+- `docker compose down -v`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Start and Connect to the Database from the command line
 - You can run it in local dev mode from `sh start-postgres.sh` or connect with dev.
@@ -40,37 +77,4 @@ Details into the coin pairs and volume;
 
 
 
-### Commands
 
-`docker compose -f compose.yaml up -d`
-`docker compose up --build`
-
-- tear down the volumes
-`docker compose down -v`
-
-
-
-### REMOVE
-
-DROP DATABASE bitcoinmonitor WITH (FORCE);
-
-
-DROP SCHEMA IF EXISTS bitcoin;
-DROP TABLE IF EXISTS bitcoin.exchange;
-
-
-CREATE TABLE bitcoin.exchange
-(
-    id VARCHAR(50),
-    name VARCHAR(50),
-    rank INT,
-    percentTotalVolume NUMERIC(8, 5),
-    volumeUsd NUMERIC(18, 5),
-    tradingPairs INT,
-    socket BOOLEAN,
-    exchangeUrl VARCHAR(50),
-    updated_unix_millis BIGINT,
-    updated_utc TIMESTAMP
-)
-
-SELECT * FROM bitcoin.exchange;

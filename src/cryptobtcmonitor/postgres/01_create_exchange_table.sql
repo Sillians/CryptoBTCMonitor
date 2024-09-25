@@ -1,13 +1,4 @@
 ---------------------
--- CREATE DATABASE
----------------------
-CREATE DATABASE bitcoinmonitor
-    WITH
-    OWNER = user
-    ENCODING = 'UTF8';
-GRANT ALL PRIVILEGES ON DATABASE bitcoinmonitor TO "user";
-
----------------------
 -- CREATE SCHEMA AND TABLE
 ---------------------
 
@@ -28,6 +19,7 @@ CREATE TABLE bitcoin.exchange
     updated_unix_millis BIGINT,
     updated_utc TIMESTAMP
 )
+
 
 
 

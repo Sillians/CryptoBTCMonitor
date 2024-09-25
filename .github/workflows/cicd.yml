@@ -1,0 +1,74 @@
+
+
+
+# Uncommet to setup CD
+# name: CD
+# on:
+#   push:
+#     branches:
+#       - main
+# jobs:
+#   deploy-to-ec2:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Deploy to server
+#         uses: easingthemes/ssh-deploy@main
+#         env:
+#           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+#           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+#           REMOTE_USER: ${{ secrets.REMOTE_USER }}
+#           SOURCE: "./"
+#           TARGET: "/home/ubuntu/bitcoinMonitor"
+
+
+
+# Uncomment to setup CI
+# name: CI
+# on: [pull_request]
+# jobs:
+#   run-ci-tests:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: checkout repo
+#         uses: actions/checkout@v2
+#       - name: Spin up containers
+#         run: make up
+#       - name: Run CI test
+#         run: make ci
+
+
+
+
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Run Postgres
+      run: docker-compose up -d
+    - name: Cache local Maven repository
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
