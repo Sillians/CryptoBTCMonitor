@@ -49,16 +49,8 @@ Helpful Resources:
 - `docker compose down -v`
 
 
-
-
-
-
-
-
-
-
-
-
+### Metabase
+Fast analytics with the friendly UX and integrated tooling to let your company explore data on their own.
 
 
 

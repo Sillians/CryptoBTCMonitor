@@ -3,11 +3,12 @@ from dataclasses import dataclass
 import psycopg2
 from psycopg2 import Error
 from core.logger import *
+from pydantic import BaseModel
 
 log = Logger("Creating PostgreSQL Data Warehouse Connection", logging.INFO).get_logger()
 
 @dataclass
-class DBConnection:
+class DBConnection():
     """A class for holding the database connection details"""
     db: str
     user: str
