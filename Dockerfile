@@ -57,7 +57,7 @@ RUN poetry install --no-root --no-dev
 
 # `development` image is used during development / testing
 FROM python-base as development
-WORKDIR $PYSETUP_PATH
+# WORKDIR $PYSETUP_PATH
 
 # copy in our built poetry + venv
 COPY --from=builder-base $POETRY_HOME $POETRY_HOME
@@ -79,4 +79,5 @@ COPY . .
 # COPY ./ /code/
 # COPY . /code/
 
-# CMD [""]
+
+ENTRYPOINT ["/docker-entrypoint.sh"]

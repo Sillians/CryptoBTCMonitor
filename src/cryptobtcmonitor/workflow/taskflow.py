@@ -17,7 +17,6 @@ load_dotenv()
 exchange_url=os.getenv('EXCHANGE_URL', '')
 
 log = Logger("Get exchange data and batch upload data to postgres...", logging.INFO).get_logger()
-# logger = get_run_logger()
 
 
 @task(name="Get UTC time", log_prints=True)
@@ -41,7 +40,7 @@ def get_exchange_data() -> List[Dict[str, Any]]:
 
 
 @flow(log_prints=True, retries=3, description="My flow to Get Exchange Data and create connection to the Postgres Database")
-def run() -> Dict:
+def main() -> Dict:
     data = get_exchange_data()
     for d in data:
         d['update_dt'] = get_utc_from_unix_time(d.get('updated'))
@@ -51,4 +50,6 @@ def run() -> Dict:
 
 
 if __name__ == '__main__':
-    run()
+    main.serve(name="exchange-data-deployment",
+              tags=['ExchangeDataDeploymentSession'],
+              cron="*/5 * * * *")
