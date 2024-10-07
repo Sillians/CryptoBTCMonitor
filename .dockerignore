@@ -88,4 +88,5 @@ venv/
 # VS Code
 .vscode/
 
-README.md
+#README.md
+pgadmin-data/

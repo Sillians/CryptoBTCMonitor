@@ -5,7 +5,7 @@ import os
 import requests
 from cryptobtcmonitor.core.logger import *
 from typing import Any, Dict, List, Optional
-from prefect import flow, task, get_run_logger
+from prefect import flow, task
 
 import psycopg2.extras as p
 from cryptobtcmonitor.utils.database import PostgresConnection

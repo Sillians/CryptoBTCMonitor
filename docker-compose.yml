@@ -11,8 +11,7 @@ services:
       PGDATA: "/data/postgres"
     volumes:
       - postgres:/data/postgres
-        ./01_create_exchange_table.sql:/docker-entrypoint-initdb.d/01_create_exchange_table.sql
-      # - ./src/cryptobtcmonitor/postgres/01_create_exchange_table.sql:/docker-entrypoint-initdb.d/01_create_exchange_table.sql
+      - ./src/cryptobtcmonitor/postgres/01_create_exchange_table.sql:/docker-entrypoint-initdb.d/01_create_exchange_table.sql
     healthcheck:
       test:
         ["CMD", "pg_isready", "-d", "${POSTGRES_DB}", "-U", "${POSTGRES_USER}"]
@@ -35,8 +34,7 @@ services:
       PGADMIN_LISTEN_PORT: 80
     volumes:
       - pgadmin:/var/lib/pgadmin
-        ./docker_pgadmin_servers.json:/pgadmin4/servers.json
-      # - ./src/cryptobtcmonitor/postgres/docker_pgadmin_servers.json:/pgadmin4/servers.json
+      - ./src/cryptobtcmonitor/postgres/docker_pgadmin_servers.json:/pgadmin4/servers.json
     ports:
       - "8080:80"
     networks:

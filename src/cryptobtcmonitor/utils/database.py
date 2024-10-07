@@ -2,7 +2,7 @@ from contextlib import contextmanager
 from dataclasses import dataclass
 import psycopg2
 from psycopg2 import Error
-from core.logger import *
+from cryptobtcmonitor.core.logger import *
 from pydantic import BaseModel
 
 log = Logger("Creating PostgreSQL Data Warehouse Connection", logging.INFO).get_logger()

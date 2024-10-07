@@ -1,14 +1,14 @@
-from prefect import flow
+# Source for the code to deploy
+from cryptobtcmonitor.data.exchange_data import run
 
-# Source for the code to deploy 
-from taskflow import main
 
 if __name__ == "__main__":
-    main.deploy(
-        name="exchange-data-deployment",
-        work_pool_name="exchange-data-work-pool", # Work pool target
-        cron="*/5 * * * *"
-        # cron="0 1 * * *", # Cron schedule (1am every day)
+    run.deploy(
+        name="Cryptobtcmonitor-deployment",
+        work_pool_name="Cryptobtcmonitor-workpool", # Work pool target
+        cron="*/5 * * * *",
+        # image="my-docker-image:dev",
+        push=False
     )
 
 

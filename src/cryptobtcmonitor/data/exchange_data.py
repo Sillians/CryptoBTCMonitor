@@ -10,7 +10,7 @@ from prefect import flow, task
 import psycopg2.extras as p
 from cryptobtcmonitor.utils.database import PostgresConnection
 from cryptobtcmonitor.utils.database_config import get_postgres_credentials
-from get_exchange_insert_query import _get_exchange_insert_query
+from cryptobtcmonitor.data.get_exchange_insert_query import _get_exchange_insert_query
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -43,7 +43,7 @@ def run() -> None:
     with PostgresConnection(get_postgres_credentials()).managed_cursor() as curr:
         p.execute_batch(curr, _get_exchange_insert_query(), data)
 
-
-if __name__ == '__main__':
-    run()
+#
+# if __name__ == '__main__':
+#     run()
 

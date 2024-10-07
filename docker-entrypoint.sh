@@ -1,17 +1,16 @@
 #!/bin/sh
-
 set -e
 
-# activate our virtual environment here
+# Activate the virtual environment, allowing the use of the installed dependencies.
 . /opt/pysetup/.venv/bin/activate
 
-echo "Starting my workflow task application..."
-# MY_FILE=code/src/cryptobtcmonitor/workflow/taskflow.py
-# ./code -f "${MY_FILE}"
+# Set the code directory path
+CODE_DIR="/code/src/cryptobtcmonitor/workflow"
 
-poetry run python3 -m "code/src/cryptobtcmonitor/workflow/taskflow.py"
+# Get the file name to run (default: taskflow.py)
+MY_FILE=${1:-taskflow.py}
 
-# CMD ["prefect deployment run 'main/exchange-data-deployment'"]
+echo "Starting my workflow task application: $MY_FILE"
 
-# Evaluating passed command:
-# exec "$@"
+# Run the Python script
+python3 "$CODE_DIR/$MY_FILE"

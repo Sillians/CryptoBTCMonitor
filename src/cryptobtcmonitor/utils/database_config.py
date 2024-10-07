@@ -1,6 +1,6 @@
 import os
-from utils.database import DBConnection
-from core.logger import *
+from cryptobtcmonitor.utils.database import DBConnection
+from cryptobtcmonitor.core.logger import *
 
 log = Logger("Getting PostgreSQL Data Warehouse Credentials", logging.INFO).get_logger()
 

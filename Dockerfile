@@ -1,5 +1,5 @@
 # `python-base` sets up all our shared environment variables
-FROM python:3.12 as python-base
+FROM python:3.12 AS python-base
 
 # python
 ENV PYTHONUNBUFFERED=1 \
@@ -30,7 +30,7 @@ ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
 
 # `builder-base` stage is used to build deps + create our virtual environment
-FROM python-base as builder-base
+FROM python-base AS builder-base
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
     # deps for installing poetry
@@ -54,9 +54,8 @@ COPY poetry.lock pyproject.toml ./
 # # Install only dependencies first so they are cached by Docker: install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
 RUN poetry install --no-root --no-dev
 
-
 # `development` image is used during development / testing
-FROM python-base as development
+FROM python-base AS development
 # WORKDIR $PYSETUP_PATH
 
 # copy in our built poetry + venv
@@ -75,9 +74,9 @@ RUN poetry install
 WORKDIR /code
 COPY . .
 
-# copy the repo
-# COPY ./ /code/
-# COPY . /code/
+# Set PYTHONPATH to point to the correct code directory
+ENV APP_WORKDIR="/code"
+ENV PYTHONPATH="${APP_WORKDIR}/src/"
 
-
+# Set the ENTRYPOINT to run your entrypoint script
 ENTRYPOINT ["/docker-entrypoint.sh"]
