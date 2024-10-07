@@ -194,8 +194,8 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-01_create_exchange_table.sql
-docker_pgadmin_servers.json
+/01_create_exchange_table.sql
+/docker_pgadmin_servers.json
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
